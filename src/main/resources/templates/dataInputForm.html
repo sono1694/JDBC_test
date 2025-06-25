@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>顧客情報登録</title>
+</head>
+<body>
+<h2>顧客情報入力フォーム</h2>
+<form action="/submit" method="post">
+	<label for="name">名前：</label><br>
+	<input type="text" id="name" name="userName" required><br><br>
+		
+	<label for="age">年齢：</label><br>
+	<input type="text" id="age" name="age" required><br><br>
+
+	<label for="sex">性別：</label><br>
+	<input type="text" id="sex" name="sex" required><br><br>
+	
+	<label for="address">住所：</label><br>
+	<input type="text" id="address" name="address" required><br><br>
+	
+	<label for="phone">電話番号：</label><br>
+	<input type="tel" id="phone" name="tel" pattern="[0-9\-]+" required><br><br>
+
+	<label for="email">メールアドレス：</label><br>
+	<input type="email" id="email" name="mailAddress" required><br><br>
+
+	<input type="submit" value="送信">
+</body>
+</html>
