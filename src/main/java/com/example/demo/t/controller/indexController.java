@@ -1,5 +1,6 @@
 package com.example.demo.t.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,18 +28,14 @@ public class indexController {
 		return "dataInputForm";
 	}
 
+	@Autowired
+	private CustomerService cs;
+	
 	@PostMapping("/submit")
 	public String handleSubmit(@ModelAttribute DetailUser detailUser) {
-//DB接続メソッド指定
-		CustomerService cs = new CustomerService();
+		// DB接続メソッド指定
 		cs.jdbcConect(detailUser);
-		
-//		System.out.println("名前：" + detailUser.getUserName());
-//		System.out.println("年齢：" + detailUser.getAge());
-//		System.out.println("性別：" + detailUser.getSex());
-//		System.out.println("住所：" + detailUser.getAddress());
-//		System.out.println("電話番号：" + detailUser.getTel());
-//		System.out.println("メールアドレス：" + detailUser.getMailAddress());
+
 		return "result";
 	}
 }

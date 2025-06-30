@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.t.dto.DetailUser;
@@ -18,12 +19,20 @@ public class CustomerService {
 			throw new IllegalStateException("ドライバのロードに失敗しました");
 		}
 	}
+
+	@Value("${spring.datasource.username}")
+	private String dbUsername;
+	
+	@Value("${spring.datasource.password}")
+	private String dbPassword;
+		
+
 	public void jdbcConect(DetailUser detailUser) {
 
 		Connection con = null;
 		try {
 			// DBへの接続
-			con = DriverManager.getConnection("jdbc:postgresql:testdb", "postgres", "Mkjal94150");
+			con = DriverManager.getConnection("jdbc:postgresql:testdb", dbUsername,dbPassword);
 
 			PreparedStatement pstmt = con.prepareStatement(
 					"INSERT INTO user_data (name, age, sex, address, tel, email) VALUES (?, ?, ?, ?, ?, ?)");
